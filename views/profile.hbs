@@ -1,0 +1,66 @@
+{{> header}}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="cover">
+                <img class="img-fluid cover-image" src="/images/cover.jpg" alt="">
+                <img src="/images/avatar.png" alt="" class="img-fluid avatar">
+            </div>
+            <div class="name">
+                <h4 class="text-capitalize">{{user.name}}</h4>
+            </div>
+        </div>
+        {{!-- <div class="col-2">
+            <div class="card">
+                <img src="/images/avatar.png" alt="" class="card-img-top avatar">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Name: {{user.name}}</li>
+                    <li class="list-group-item">Email: {{user.email}}</li>
+                    <li class="list-group-item">Total Articles:</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Edit Profile</a>
+                    <a href="#" class="card-link">Change Photo</a>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+    <div class="row mt-4">
+        <div class="col-10">
+            <h4 class="border-bottom">Your Articles</h4>
+            <div class="row">
+                {{#if articles}}
+                {{#each articles}}
+                <div class="col-4 mb-1">
+                    <div class="card" style="width: 100%;">
+                        {{#if photo}}
+                        <img src="/uploads/{{photo}}" class="card-img-top" alt=""
+                            style="max-height:250px; width: auto;">
+                        {{else}}
+                        <img src="/images/article_placeholder.png" class="card-img-top" alt="">
+                        {{/if}}
+                        <div class="card-body">
+                            <p class="text-muted mb-0">{{date}}</p>
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">{{body}}</p>
+                            <a href="/article/{{id}}" class="btn btn-primary">Read</a>
+                            <a href="/article/edit/{{id}}" class="btn btn-warning">Edit</a>
+                            <a href="/article/delete/{{id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{else}}
+                <h4>You have not published any article yet</h4>
+                {{/if}}
+            </div>
+        </div>
+        <div class="col-2">
+            <a href="/create" class="btn btn-primary">Create New Article</a>
+            {{#if message}}
+            <p>{{message}}</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{> footer}}
